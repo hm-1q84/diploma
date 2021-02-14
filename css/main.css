@@ -1,0 +1,94 @@
+/* Общие настройки */
+:root {
+    --mainC: #648EC8;
+}
+* {
+    box-sizing: border-box;
+  }
+html {
+  font-size: 10px;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #000;
+}
+a,
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+  color: #111111;
+}
+button:focus,
+button:visited,
+button:active {
+  outline: none;
+}
+.button {
+  background-color: #68b738;
+  border: none;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 16px;
+}
+.button:hover {
+  cursor: pointer;
+  background: linear-gradient(#68b738, #91d16a);
+}
+p {
+  margin: 0;
+}
+input {
+  outline: none;
+}
+h2 {
+  margin: 0;
+}
+.nav {
+    color: #000 !important;
+}
+.nav:hover {
+    color: #fff !important;
+}
+
+/* header */
+header {
+  background-color: var(--mainC);
+  height: 10rem;
+}
+header {
+  padding: 1rem 0;
+}
+.header__logo {
+  width: 18rem;
+  height: 8rem;
+  border-radius: 10px;
+}
+.header__menu {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin-top: 2.2rem;
+}
+.header__menu-link {
+  font-size: 2rem;
+  color: #fff;
+}
+.header__seller {
+  margin-top: 2rem;
+}
+.header__seller:hover {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* footer */
+footer {
+  background-color: var(--mainC);
+  height: 10rem;
+}
+.footer__info {
+  text-align: center; 
+  font-size: 1.8rem;
+  color: #fff;
+  margin-top: 2.2rem;
+}
