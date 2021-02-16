@@ -9,7 +9,7 @@
                         <li><a href="index.php" class="header__menu-link">Главная</a></li>
                         <li><a href="packing.php" class="header__menu-link">Упаковочное</a></li>
                         <li><a href="food.php" class="header__menu-link">Пищевое</a></li>
-                        <li><a href="#" class="header__menu-link">Контакты</a></li>
+                        <li><a href="contacts.php" class="header__menu-link">Контакты</a></li>
                     </menu>
                 </div>
                 <div class="col-lg-1 offset-lg-2">

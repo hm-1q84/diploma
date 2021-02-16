@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/packing.css">
 </head>
 <body>
 
@@ -224,18 +223,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row"> 
-                <div class="col-lg-6 offset-lg-3">
-                    <form action="#" class="form form_request mx-auto">
-                        <h3 class="form__header">Оставить заявку</h3>
-                        <input class="form__input" type="text" placeholder="Имя">
-                        <input class="form__input" type="text" placeholder="Телефон">
-                        <input class="form__input" type="email" placeholder="Email">
-                        <textarea class="form__input form__textarea" cols="30" rows="5" placeholder="Комментарий"></textarea>
-                        <input class="form__btn" type="submit" value="Отправить">
-                    </form>
-                </div>
-            </div>
+            <?php include 'form_request.php' ?> <!-- dynamic form connection -->
         </div> <!-- container  -->
     </main>
 
