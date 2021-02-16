@@ -1,6 +1,8 @@
 /* Общие настройки */
 :root {
     --mainC: #648EC8;
+    --mainCTr: rgba(100, 142, 200, 0.23);
+    --mainCHov: #4074BC;
 }
 * {
     box-sizing: border-box;
@@ -18,6 +20,7 @@ a:hover {
   cursor: pointer;
   color: #111111;
 }
+textarea,
 button:focus,
 button:visited,
 button:active {
