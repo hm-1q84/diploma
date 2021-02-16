@@ -53,6 +53,7 @@ h2 {
     color: #fff !important;
 }
 main {
+  min-height: calc(100vh - 32rem);
   margin: 5rem 0 7rem 0;
 }
 
@@ -85,6 +86,33 @@ header {
 .header__seller:hover {
   width: 3rem;
   height: 3rem;
+}
+
+/* footer */
+footer {
+  background-color: var(--mainC);
+  height: 10rem;
+}
+.footer__info {
+  text-align: center; 
+  font-size: 1.8rem;
+  color: #fff;
+  margin-top: 2.2rem;
+}
+
+/* index.php */
+.main__photo {
+  width: 100%;
+  margin-bottom: 5rem;
+}
+.main__info {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+.main__sertificate-photo {
+  float: right;
+  width: 40%;
+  margin: 0 0 2rem 2rem;
 }
 
 /* product */
@@ -135,6 +163,7 @@ h2 {
   padding: 4rem 0;
   border: 3px solid var(--mainC);
   font-size: 1.8rem;
+  box-shadow: 5px 10px 8px #888888;
 }
 .form__header {
   font-size: 2.4rem;
@@ -165,14 +194,32 @@ h2 {
   background: var(--mainCHov);
 }
 
-/* footer */
-footer {
-  background-color: var(--mainC);
-  height: 10rem;
-}
-.footer__info {
-  text-align: center; 
+/* contacts.php */
+.contacts {
+  margin: 5rem 0;
   font-size: 1.8rem;
-  color: #fff;
-  margin-top: 2.2rem;
+}
+
+/* authorization.php */
+.form_authorization {
+  min-height: 30rem;
+  margin-top: 8vh;
+}
+
+/* requests.php */
+.requests__header {
+  text-align: center;
+}
+.form_find {
+  min-height: 2rem;
+  flex-direction: row !important;
+  border: none;
+  box-shadow: none;
+}
+.form_find__input {
+  margin-right: 5rem;
+  margin-top: 0;
+}
+.form_find__btn {
+  margin-top: 0;
 }

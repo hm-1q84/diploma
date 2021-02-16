@@ -13,7 +13,7 @@
                     </menu>
                 </div>
                 <div class="col-lg-1 offset-lg-2">
-                    <a href="#"><img class="header__seller" src="img/seller.png" alt="Продавец"></a>
+                    <a href="authorization.php"><img class="header__seller" id="header__seller" src="img/seller.png" alt="Продавец"></a>
                 </div>
             </div>
         </div>
