@@ -10,87 +10,53 @@
     <link rel="stylesheet" href="css/food.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <img class="header__logo" src="img/logo.jpg" alt="Лого">
-                </div>
-                <div class="col-lg-6">
-                    <menu class="header__menu">
-                        <li><a href="index.php" class="header__menu-link">Главная</a></li>
-                        <li><a href="packing.php" class="header__menu-link">Упаковочное</a></li>
-                        <li><a href="food.php" class="header__menu-link nav">Пищевое</a></li>
-                        <li><a href="#" class="header__menu-link">Контакты</a></li>
-                    </menu>
-                </div>
-                <div class="col-lg-1 offset-lg-2">
-                    <a href="#"><img class="header__seller" src="img/seller.png" alt="Продавец"></a>
-                </div>
-            </div>
-        </div>
-    </header>
+
+    <?php include 'header.php' ?> <!-- dynamic header connection -->
+
     <main>
         <div class="container">
             <div class="product">
                 <div class="row">
                     <div class="col-lg-4">
-                        <h2>Отсадочная машина MB-120</h2>
-                        <img class="product__photo" src="img/otsadochnye-mashiny-dlja-pechenja-i-prjanikov-MB.jpg" alt="MB-120">
+                        <h2>Датер ручной DY-8</h2>
+                        <img class="product__photo" src="img/dater-ruchnoj-DY-8.jpg" alt="DY-8">
                     </div>
                     <div class="col-lg-7 offset-lg-1">
                         <table class="product__table">
                             <tr>
-                                <th>Модель отсадочной машины</th>
-                                <th>МВ-120</th>
-                            </tr>
-                            <tr>
-                                <td>Производительность по тесту</td>
-                                <td>160 кг/час</td>
-                            </tr>
-                            <tr>
-                                <td>Производительность по печенью «курабье» в кг/час (смену)</td>
-                                <td>60 кг/час</td>
-                            </tr>
-                            <tr>
-                                <td>Производительность по печенью «курабье» в шт/час (смену)</td>
-                                <td>2700 шт/час</td>
-                            </tr>
-                            <tr>
-                                <td>Масса одного изделия</td>
-                                <td>5 - 60 грамм</td>
-                            </tr>
-                            <tr>
-                                <td>Количество форсунок</td>
-                                <td>3 в ряд</td>
-                            </tr>
-                            <tr>
-                                <td>Шаг между форсунками</td>
-                                <td>70 мм</td>
-                            </tr>
-                            <tr>
-                                <td>Объем бункера</td>
-                                <td>20 литров</td>
-                            </tr>
-                            <tr>
-                                <td>Напряжение</td>
-                                <td>380В</td>
+                                <th>Модель ручного датера</th>
+                                <th>DY-8</th>
                             </tr>
                             <tr>
                                 <td>Потребляемая мощность</td>
-                                <td>550 Вт</td>
+                                <td>40 Вт</td>
+                            </tr>
+                            <tr>
+                                <td>Скорость оттиска</td>
+                                <td>0-100</td>
+                            </tr>
+                            <tr>
+                                <td>Количество символов</td>
+                                <td>0-45 литер</td>
+                            </tr>
+                            <tr>
+                                <td>Размер символов</td>
+                                <td>2*4 мм</td>
+                            </tr>
+                            <tr>
+                                <td>Ширина печатающей ленты</td>
+                                <td>25, 30, 35 мм</td>
                             </tr>
                             <tr>
                                 <td>Габаритные размеры</td>
-                                <td>1150*850*1400 мм</td>
+                                <td>270*160*220 мм</td>
                             </tr>
                             <tr>
                                 <td>Масса</td>
-                                <td>120 кг</td>
+                                <td>2 кг</td>
                             </tr>
-                            <tr>
                                 <td><b>Цена</b></td>
-                                <td><b>109 000 руб</b></td>
+                                <td><b>4 550 руб</b></td>
                             </tr>
                         </table>
                     </div>
@@ -98,13 +64,126 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <p class="product__info">
-                            Отсадочная машина MB-120 формирует изделия из песочного, заварного, творожного, бисквитного и другого теста. Благодаря высокой универсальности покупатель может на одной машине делать несколько видов изделий. Например кексы и профитроли, или овсяное и песочное печенье. Перенастройка машины занимает менее 10 минут. Минимальный объем отсаживаемой продукции от 10 кг. Можно поставить в один ряд форсунки разного рисунка и одновременно выпускать разный ассортимент.
+                            Датер ручной применяется на малых предприятиях с возможность нанесения печати на продукции до 600 оттисков в час. Печать осуществляется до 3 строк, методом термопереноса краски. При этом оттиск не смывается, способен выдерживать низкие температуры и высокую влажность. При установке чернильной ленты печать возможна любым цветом в три строки по 30 символов.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h2>Ручные запайщики пакетов FS</h2>
+                        <img class="product__photo" src="img/zapajshhiki-paketov-ruchnye-FS.jpg" alt="FS">
+                    </div>
+                    <div class="col-lg-7 offset-lg-1">
+                        <table class="product__table">
+                            <tr>
+                                <th>Модель ручного запайщика пакетов</th>
+                                <th>FS-300</th>
+                                <th>FS-400</th>
+                            </tr>
+                            <tr>
+                                <td>Потребляемая мощность</td>
+                                <td>430 Вт</td>
+                                <td>430 Вт</td>
+                            </tr>
+                            <tr>
+                                <td>Длина запайки</td>
+                                <td>300 мм</td>
+                                <td>400 мм</td>
+                            </tr>
+                            <tr>
+                                <td>Ширина шва запайки</td>
+                                <td class="text-center" colspan="2">3 мм</td>
+                            </tr>
+                            <tr>
+                                <td>Толщина материала</td>
+                                <td class="text-center" colspan="2">до 2,5 мм</td>
+                            </tr>
+                            <tr>
+                                <td>Время нагрева</td>
+                                <td class="text-center" colspan="2">до 3 сек</td>
+                            </tr>
+                            <tr>
+                                <td>Габаритные размеры</td>
+                                <td>450*90 *260 мм</td>
+                                <td>540*90 *300 мм</td>
+                            </tr>
+                            <tr>
+                                <td>Масса</td>
+                                <td>4 кг</td>
+                                <td>5 кг</td>
+                            </tr>
+                                <td><b>Цена</b></td>
+                                <td><b>1 470 руб</b></td>
+                                <td><b>2 200 руб</b></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="product__info">
+                            Запаиватели ручные применяются в любой промышленности как универсальные, дешевые и надежные запайщики. Мощные трансформаторы создают импульсы, которые сваривают любую пленку способную плавиться до 300 градусов.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h2>Индукционные запайщики DGYF-S500</h2>
+                        <img class="product__photo" src="img/indukcionnye-zapajshhiki-DGYF-S500.jpg" alt="DGYF-S500">
+                    </div>
+                    <div class="col-lg-7 offset-lg-1">
+                        <table class="product__table">
+                            <tr>
+                                <th>Модель индукционного запайщика пакетов</th>
+                                <th>DGYF-S500A</th>
+                            </tr>
+                            <tr>
+                                <td>Потребляемая мощность</td>
+                                <td>500 Вт</td>
+                            </tr>
+                            <tr>
+                                <td>Производительность</td>
+                                <td>1200 шт/час</td>
+                            </tr>
+                            <tr>
+                                <td>Диаметр запечатывания</td>
+                                <td>20-100 мм</td>
+                            </tr>
+                            <tr>
+                                <td>Габаритные размеры</td>
+                                <td>400*300*200 мм</td>
+                            </tr>
+                            <tr>
+                                <td>Масса</td>
+                                <td>5 кг</td>
+                            </tr>
+                                <td><b>Цена</b></td>
+                                <td><b>12 980 руб</b></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="product__info">
+                            Электромагнитные индукционные запайщики DGYF-S500 используются для приварки металлизированного комбинированного материала к горловине неметаллических емкостей (пластиковых, стеклянных и т.д.) с диаметром φ20-100 мм.
                         </p>
                     </div>
                 </div>
             </div>
         </div> <!-- container  -->
     </main>
+
     <?php include("footer.php"); ?>     <!-- dynamic footer connection -->
+
+    <script> //script changing color of the current page link in header menu
+        var cur = document.getElementsByTagName("a")[2];
+        cur.classList.add("nav");
+    </script>
+
 </body>
 </html>
