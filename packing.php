@@ -3,33 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>СМС</title>
+    <title>Упаковочное</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/packing.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <img class="header__logo" src="img/logo.jpg" alt="Лого">
-                </div>
-                <div class="col-lg-6">
-                    <menu class="header__menu">
-                        <li><a href="index.php" class="header__menu-link">Главная</a></li>
-                        <li><a href="packing.php" class="header__menu-link nav">Упаковочное</a></li>
-                        <li><a href="#" class="header__menu-link">Пищевое</a></li>
-                        <li><a href="#" class="header__menu-link">Контакты</a></li>
-                    </menu>
-                </div>
-                <div class="col-lg-1 offset-lg-2">
-                    <a href="#"><img class="header__seller" src="img/seller.png" alt="Продавец"></a>
-                </div>
-            </div>
-        </div>
-    </header>
+
+    <?php include 'header.php' ?> <!-- dynamic header connection -->
+    
     <main>
         <div class="container">
             <div class="product">
@@ -241,8 +224,22 @@
                     </div>
                 </div>
             </div>
+            <div class="row"> 
+                <div class="col-lg-6 offset-lg-3">
+                    <form action="" class="form_request">
+
+                    </form>
+                </div>
+            </div>
         </div> <!-- container  -->
     </main>
-    <?php include("footer.php"); ?>     <!-- dynamic footer connection -->
+
+    <?php include 'footer.php'; ?>     <!-- dynamic footer connection -->
+
+    <script> //script changing color of the current page link in header menu
+        var cur = document.getElementsByTagName("a")[1];
+        cur.classList.add("nav");
+    </script>
+
 </body>
 </html>
