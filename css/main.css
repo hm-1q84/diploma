@@ -49,6 +49,9 @@ h2 {
 .nav:hover {
     color: #fff !important;
 }
+main {
+  margin: 5rem 0;
+}
 
 /* header */
 header {
