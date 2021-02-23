@@ -21,7 +21,7 @@
                         <img class="product__photo" src="img/dater-ruchnoj-DY-8.jpg" alt="DY-8">
                     </div>
                     <div class="col-lg-7 offset-lg-1">
-                        <table class="product__table">
+                        <table class="table">
                             <tr>
                                 <th>Модель ручного датера</th>
                                 <th>DY-8</th>
@@ -75,7 +75,7 @@
                         <img class="product__photo" src="img/zapajshhiki-paketov-ruchnye-FS.jpg" alt="FS">
                     </div>
                     <div class="col-lg-7 offset-lg-1">
-                        <table class="product__table">
+                        <table class="table">
                             <tr>
                                 <th>Модель ручного запайщика пакетов</th>
                                 <th>FS-300</th>
@@ -135,7 +135,7 @@
                         <img class="product__photo" src="img/indukcionnye-zapajshhiki-DGYF-S500.jpg" alt="DGYF-S500">
                     </div>
                     <div class="col-lg-7 offset-lg-1">
-                        <table class="product__table">
+                        <table class="table">
                             <tr>
                                 <th>Модель индукционного запайщика пакетов</th>
                                 <th>DGYF-S500A</th>

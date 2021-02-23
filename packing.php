@@ -21,7 +21,7 @@
                         <img class="product__photo" src="img/otsadochnye-mashiny-dlja-pechenja-i-prjanikov-MB.jpg" alt="MB-120">
                     </div>
                     <div class="col-lg-7 offset-lg-1">
-                        <table class="product__table">
+                        <table class="table">
                             <tr>
                                 <th>Модель отсадочной машины</th>
                                 <th>МВ-120</th>
@@ -92,7 +92,7 @@
                         <img class="product__photo" src="img/pechi-stellazhnye-jelektricheskie-HPJe-750-1.jpg" alt="ХПЕ-750">
                     </div>
                     <div class="col-lg-7 offset-lg-1">
-                        <table class="product__table">
+                        <table class="table">
                             <tr>
                                 <th>Модель</th>
                                 <th>ХПЭ-750/3С</th>
@@ -159,7 +159,7 @@
                         <img class="product__photo" src="img/proseivateli-3.jpg" alt="MP-500">
                     </div>
                     <div class="col-lg-7 offset-lg-1">
-                        <table class="product__table">
+                        <table class="table">
                             <tr>
                                 <th>Модель мукопросеивателя</th>
                                 <th>MP-500</th>
