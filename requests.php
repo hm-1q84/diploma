@@ -10,7 +10,13 @@
 </head>
 <body>
 
-    <?php include 'header.php' ?> <!-- dynamic header connection -->
+    <?php 
+        session_start();
+        if ($_SESSION['loggedin'] == false) { 
+            header("Location: authorization.php");
+        }
+        include 'header.php' //dynamic header connection
+    ?>
 
     <main>
         <div class="container">
@@ -59,9 +65,11 @@
 
     <?php include 'footer.php'; ?>     <!-- dynamic footer connection -->
 
-    <script>  //script changing image of seller to the log-out image
+    <script>  //script changing image of seller and link for loggin-out
         var img = document.getElementById("header__seller");
         img.src = 'img/logout.png';
+        var logoutLink = document.getElementById("logoutLink");
+        logoutLink.href = 'logout.php';
     </script>
 
 </body>

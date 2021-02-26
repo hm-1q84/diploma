@@ -11,16 +11,30 @@
 </head>
 <body>
 
-    <?php include 'header.php' ?> <!-- dynamic header connection -->
+    <?php 
+        session_start();
+        if ($_SESSION['loggedin'] == true) {
+            header("Location: requests.php"); //if already authorized than redirect to requests
+        }
+        elseif (!isset($_POST['login']) || !isset($_POST['password'])) { } //if log or pass were not entered than do nothing
+        elseif ($_POST['login'] == 'admin' && $_POST['password'] == 'sms_pass') { 
+            $_SESSION['loggedin'] = true; //user is authorized
+            header("Location: requests.php"); //redirect to requests
+        }
+        else {
+            echo '<script>alert("Incorrect login or password!")</script>'; 
+        }
+        include 'header.php'; //dynamic header connection
+    ?> 
 
     <main>
         <div class="container">
             <div class="row"> 
                 <div class="col-lg-6 offset-lg-3">
-                    <form action="#" class="form form_authorization mx-auto">
+                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="form form_authorization mx-auto">
                         <h3 class="form__header">Авторизация продавца</h3>
-                        <input class="form__input" type="text" placeholder="Логин" required>
-                        <input class="form__input" type="password" placeholder="Пароль" required>
+                        <input name="login" class="form__input" type="text" placeholder="Логин" required>
+                        <input name="password" class="form__input" type="password" placeholder="Пароль" required>
                         <input class="form__btn" type="submit" value="Войти">
                     </form>
                 </div>
