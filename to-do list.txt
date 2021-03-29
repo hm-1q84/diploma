@@ -1,4 +1,1 @@
-- authorization
-- client search
-- form data sending to db 
 - form data sending to telegram

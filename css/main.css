@@ -249,3 +249,11 @@ h2 {
 .form_find__btn {
   margin-top: 0;
 }
+.form_find__undo {
+  margin-left: 2rem;
+}
+.form_find__undo:hover {
+  cursor: pointer;
+  width: 3rem;
+  margin-left: 2.2rem;
+}

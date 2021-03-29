@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
     <?php include 'header.php' ?> <!-- dynamic header connection -->
 
     <main>

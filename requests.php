@@ -22,9 +22,10 @@
         <div class="container">
             <h1 class="requests__header">Заявки</h1>
             <div class="row">
-                <form action="#" class="form form_find ml-auto">
-                    <input class="form__input form_find__input" type="text" placeholder="Имя клиента" required>
-                    <input class="form__btn form_find__btn" type="submit" value="Найти">
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" class="form form_find ml-auto" method="post">
+                    <input name="name" class="form__input form_find__input" type="text" placeholder="Имя клиента" value='<?php echo (isset($_POST['find_request']) ? $_POST['name'] : "") ?>'>
+                    <input name="find_request" class="form__btn form_find__btn" type="submit" value="Найти">    
+                    <input name="reset" type="image" class="form_find__undo" src="img/undo-arrow.png" alt="Сброс">
                 </form>
             </div>
             <div class="row">
@@ -45,17 +46,24 @@
         
                     include 'print.php';
 
-                    if (!isset($_GET['action'])) {//set action index during first load of page
-                        $_GET['action'] = '';
+                    if (isset($_POST['find_request']) &&  $_POST['name'] != '') { //поиск заявки по фамилии клиента
+                        $name = $_POST['name'];
+                        $sql = "SELECT * FROM requests WHERE name = '$name'";
+                        print_requests($conn, $sql);	
                     }
-
-                    if (($_GET['action'] == 'delete') && isset($_GET['id'])) { //if user clicked the link 'delete' then delete the record
-                        $sql = "DELETE FROM requests WHERE id = '".($_GET["id"])."'";
-                        $conn->query($sql);
+                    else { //обычное отображение (без поиска)
+                        if (!isset($_GET['action'])) {//set action index during first load of page
+                            $_GET['action'] = '';
+                        }
+    
+                        if (($_GET['action'] == 'delete') && isset($_GET['id'])) { //if user clicked the link 'delete' then delete the record
+                            $sql = "DELETE FROM requests WHERE id = '".($_GET["id"])."'";
+                            $conn->query($sql);
+                        }
+    
+                        $sql = "SELECT * FROM requests";
+                        print_requests($conn, $sql);	
                     }
-
-                    $sql = "SELECT * FROM requests";
-			        print_requests($conn, $sql);	
 
 			        $conn->close();
                 ?>
