@@ -21,14 +21,41 @@
     
         $sql = "INSERT INTO requests (name, phone, email, comment) VALUES ('$name', '$phone', '$email', '$comment')";
         $conn->query($sql);
-
-        echo '<script>alert("Заявка успешно отправлена!")</script>'; 
-
         $conn->close();
+
+        /* https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
+        где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее */
+
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $comment = $_POST['comment'];
+        $token = "1772008932:AAHZak7CcBBi6IpGfd4DtvfpRbp_zwsnvk8";
+        $chat_id = "-543378880";
+        $arr = array(
+        'Имя пользователя: ' => $name,
+        'Телефон: ' => $phone,
+        'Email: ' => $email,
+        'Комментарий: ' => $comment
+        );
+
+        $txt = "";
+        foreach($arr as $key => $value) {
+            $txt .= "<b>".$key."</b> ".$value."%0A";
+        };
+
+        $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
+
+        if ($sendToTelegram) {
+            echo '<script>alert("Заявка успешно отправлена!")</script>'; 
+        } else {
+            echo '<script>alert("Упс, что-то пошло не так... Ошибочка!")</script>'; 
+        }
+
     }
 ?>
 <div class="row"> 
-    <div class="col-lg-6 offset-lg-3">
+    <div class="col-lg-6 offset-lg-3"> 
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" class="form form_request mx-auto" method="post">
             <h3 class="form__header">Оставить заявку</h3>
             <input name="name" class="form__input" type="text" placeholder="Имя" required>
