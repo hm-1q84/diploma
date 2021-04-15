@@ -133,7 +133,7 @@ footer {
 }
 .main__info {
   margin-top: 1rem;
-  font-size: 1.6rem;
+  font-size: 16px;
 }
 .main__sertificate-photo {
   float: right;
@@ -189,7 +189,7 @@ h2 {
   padding: 4rem 0;
   border: 3px solid var(--mainC);
   font-size: 1.8rem;
-  box-shadow: 5px 10px 8px #888888;
+  box-shadow: 5px 10px 8px #d3d6fd;
 }
 .form__header {
   font-size: 2.4rem;
@@ -256,4 +256,43 @@ h2 {
   cursor: pointer;
   width: 3rem;
   margin-left: 2.2rem;
+}
+
+/* sign_up.php */
+.form__note {
+  margin: 3rem 8rem 1rem 8rem;
+  font-size: 12px;
+}
+.form_sign-up {
+  min-height: 30rem;
+  margin-top: 8vh;
+}
+.form_sign-up .form__input {
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+.form_sign-up .form__btn {
+  margin-top: 0;
+}
+
+/* modification.php */
+.back-btn {
+  border: 1px solid var(--mainC);
+  border-radius: 20px;
+  padding: 1.4rem 3rem 1.4rem 3rem;
+  font-size: 18px;
+}
+.back-btn:hover {
+  background: var(--mainCHov);
+  color: #fff;
+}
+
+/* account.php */
+.account__info {
+  font-size: 16px;
+  font-weight: bold;  
+}
+.account__header {
+  text-align: center;
+  margin-bottom: 5rem;
 }

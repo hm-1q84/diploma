@@ -7,22 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/contacts.css">
 </head>
 <body>
 
     <?php 
         session_start();
-        if ($_SESSION['loggedin'] == true) {
-            header("Location: requests.php"); //if already authorized than redirect to requests
-        }
-        elseif (!isset($_POST['login']) || !isset($_POST['password'])) { } //if log or pass were not entered than do nothing
-        elseif ($_POST['login'] == 'admin' && $_POST['password'] == 'sms_pass') { 
-            $_SESSION['loggedin'] = true; //user is authorized
-            header("Location: requests.php"); //redirect to requests
-        }
-        else {
-            echo '<script>alert("Incorrect login or password!")</script>'; 
+        if (array_key_exists("loggedin", $_SESSION)) { //if the key in $_SESSION doesn't exist (first launch of the app) then ignore authorization check
+            if ($_SESSION['loggedin'] == true) {
+                header("Location: requests.php"); //if already authorized than redirect to requests
+            }
+            elseif (!isset($_POST['login']) || !isset($_POST['password'])) { } //if log or pass were not entered than do nothing
+            elseif ($_POST['login'] == 'admin' && $_POST['password'] == 'sms_pass') { 
+                $_SESSION['loggedin'] = true; //user is authorized
+                header("Location: account.php"); //redirect to requests
+            }
+            else {
+                echo '<script>alert("Incorrect login or password!")</script>'; 
+            }
         }
         include 'header.php'; //dynamic header connection
     ?> 
