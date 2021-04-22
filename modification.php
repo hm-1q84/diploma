@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 offset-lg-10">
-                    <a href="#" class="back-btn">Назад</a>
+                    <a href="account.php" class="back-btn">Назад</a>
                 </div>
             </div>
             <div class="row"> 

@@ -11,11 +11,10 @@
 <body>
 
     <?php 
-        session_start();
+        include 'header.php'; //dynamic header connection
         if ($_SESSION['loggedin'] == false) { 
             header("Location: authorization.php");
         }
-        include 'header.php' //dynamic header connection
     ?>
 
     <main>
@@ -24,8 +23,10 @@
             <p class="account__info">Логин:</p>
             <p class="account__info">Email:</p>
             <p class="account__info">Дата регистрации:</p>
-            <a href="#">Редактировать</a><br>
-            <a href="#">Выйти</a>
+            <div class="buttons-container">
+                <a class="account__btn modify-btn" href="modification.php">Редактировать</a><br>
+                <a class="account__btn logout-btn" href="logout.php">Выйти</a>
+            </div>
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="form form_authorization mx-auto">

@@ -16,6 +16,11 @@
 
     <main>
         <div class="container">
+            <div class="row">
+                <div class="col-lg-2 offset-lg-10">
+                    <a href="account.php" class="back-btn">Назад</a>
+                </div>
+            </div>
             <div class="row"> 
                 <div class="col-lg-6 offset-lg-3">
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="form form_sign-up mx-auto">

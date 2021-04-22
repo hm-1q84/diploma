@@ -11,21 +11,21 @@
 <body>
 
     <?php 
-        session_start();
-        if (array_key_exists("loggedin", $_SESSION)) { //if the key in $_SESSION doesn't exist (first launch of the app) then ignore authorization check
-            if ($_SESSION['loggedin'] == true) {
-                header("Location: requests.php"); //if already authorized than redirect to requests
-            }
-            elseif (!isset($_POST['login']) || !isset($_POST['password'])) { } //if log or pass were not entered than do nothing
-            elseif ($_POST['login'] == 'admin' && $_POST['password'] == 'sms_pass') { 
-                $_SESSION['loggedin'] = true; //user is authorized
-                header("Location: account.php"); //redirect to requests
-            }
-            else {
-                echo '<script>alert("Incorrect login or password!")</script>'; 
-            }
-        }
         include 'header.php'; //dynamic header connection
+        if (!array_key_exists("loggedin", $_SESSION)) { //if log in status doen't exist then set it false
+            $_SESSION['loggedin'] = false;
+        }
+        if ($_SESSION['loggedin'] == true) {
+            header("Location: account.php"); //if already authorized than redirect to requests
+        }
+        elseif (!isset($_POST['login']) || !isset($_POST['password'])) { } //if log or pass were not entered than do nothing
+        elseif ($_POST['login'] == 'admin' && $_POST['password'] == 'sms_pass') { 
+            $_SESSION['loggedin'] = true; //user is authorized
+            header("Location: account.php"); //redirect to requests
+        }
+        else {
+            echo '<script>alert("Incorrect login or password!")</script>'; 
+        }
     ?> 
 
     <main>
@@ -36,7 +36,8 @@
                         <h3 class="form__header">Авторизация продавца</h3>
                         <input name="login" class="form__input" type="text" placeholder="Логин" required>
                         <input name="password" class="form__input" type="password" placeholder="Пароль" required>
-                        <input class="form__btn" type="submit" value="Войти">
+                        <input class="form__btn" name="submit" type="submit" value="Войти">
+                        <small class="authorization__forgot"><a href="recovery.php">Забыли пароль?</a></small>
                     </form>
                 </div>
             </div>

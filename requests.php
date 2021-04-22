@@ -11,11 +11,10 @@
 <body>
 
     <?php 
-        session_start();
+        include 'header.php'; //dynamic header connection
         if ($_SESSION['loggedin'] == false) { 
             header("Location: authorization.php");
         }
-        include 'header.php' //dynamic header connection
     ?>
 
     <main>
@@ -73,12 +72,12 @@
 
     <?php include 'footer.php'; ?>     <!-- dynamic footer connection -->
 
-    <script>  //script changing image of seller and link for loggin-out
+    <!-- <script>  //script changing image of seller and link for logging-out
         var img = document.getElementById("header__seller");
         img.src = 'img/logout.png';
         var logoutLink = document.getElementById("logoutLink");
         logoutLink.href = 'logout.php';
-    </script>
+    </script> -->
 
 </body>
 </html>
