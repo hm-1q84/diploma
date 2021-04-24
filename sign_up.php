@@ -12,6 +12,39 @@
 
     <?php 
         include 'header.php'; //dynamic header connection
+        include 'password-generator.php'; //script for password generation
+        if ($_SESSION['loggedin'] == false) { //authorization check
+            header("Location: authorization.php");
+        }
+        elseif (isset($_POST['login']) && isset($_POST['email'])) {
+            $servername = "localhost";
+			$username = "root";
+			$password = "";
+			$dbname = "sms";
+
+			// Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error) {
+			    die("Connection failed: " . $conn->connect_error);
+			}
+
+            $login = $_POST["login"];     
+            $email = $_POST["email"]; 
+            $aes_key = 'Hj.92X$m`SD[S<ew';
+            $date = date("Y-m-d");
+
+            $sql = "INSERT INTO `accounts`(`login`, `email`, `password`, `date`) 
+                    VALUES ('$login', '$email', AES_ENCRYPT('sms_pass', '".$aes_key."'), '$date')";
+            if ($conn->query($sql)) {
+                echo '<script>alert("Аккаунт успешно создан! Пароль сгенерирован и отправлен на указанную почту.")</script>'; 
+            }
+            else {
+                echo 'Упс, ошибочка вышла!';
+            }
+
+            $conn->close();
+        }
     ?> 
 
     <main>

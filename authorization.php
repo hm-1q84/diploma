@@ -47,7 +47,7 @@
             }
             else
             {
-                echo '<script>alert("Incorrect login or password!")</script>'; 
+                echo '<script>alert("Неверный логин или пароль")</script>'; 
             }
 
             $conn->close();
