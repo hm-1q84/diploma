@@ -39,3 +39,8 @@
 
 </body>
 </html>
+
+<?php 
+    // secret key: Hj.92X$m`SD[S<ew
+    // INSERT INTO `accounts`(`login`, `email`, `password`, `date`) VALUES ('test', 'test@gmail.com', AES_ENCRYPT('sms_pass', 'Hj.92X$m`SD[S<ew'), '2020-05-22')
+?>

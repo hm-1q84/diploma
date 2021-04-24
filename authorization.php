@@ -18,13 +18,39 @@
         if ($_SESSION['loggedin'] == true) {
             header("Location: account.php"); //if already authorized than redirect to requests
         }
-        elseif (!isset($_POST['login']) || !isset($_POST['password'])) { } //if log or pass were not entered than do nothing
-        elseif ($_POST['login'] == 'admin' && $_POST['password'] == 'sms_pass') { 
-            $_SESSION['loggedin'] = true; //user is authorized
-            header("Location: account.php"); //redirect to requests
-        }
-        else {
-            echo '<script>alert("Incorrect login or password!")</script>'; 
+        elseif (isset($_POST['login']) && isset($_POST['password'])) {
+            $servername = "localhost";
+			$username = "root";
+			$password = "";
+			$dbname = "sms";
+
+			// Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error) {
+			    die("Connection failed: " . $conn->connect_error);
+			}
+
+            $login = $_POST["login"];     
+            $password = $_POST["password"]; 
+            $aes_key = 'Hj.92X$m`SD[S<ew';
+
+            $sql = "SELECT login, AES_DECRYPT(`password`, '".$aes_key."') AS password 
+                    FROM accounts 
+                    WHERE login = '".$login."' AND AES_DECRYPT(`password`, '".$aes_key."') = '".$password."'";
+            $result1 = $conn->query($sql);
+
+            if ($result1->num_rows > 0 )
+            { 
+                $_SESSION['loggedin'] = true; //user is authorized
+                header("Location: account.php"); //redirect to requests
+            }
+            else
+            {
+                echo '<script>alert("Incorrect login or password!")</script>'; 
+            }
+
+            $conn->close();
         }
     ?> 
 
