@@ -15,14 +15,48 @@
         if ($_SESSION['loggedin'] == false) { 
             header("Location: authorization.php");
         }
+        elseif (isset($_POST['old_pas']) && isset($_POST['new_pas'])) {
+            $servername = "localhost";
+			$username = "root";
+			$password = "";
+			$dbname = "sms";
+
+			// Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error) {
+			    die("Connection failed: " . $conn->connect_error);
+			}
+  
+            $old_pswrd = $_POST["old_pas"]; 
+            $new_pswrd = $_POST["new_pas"];
+            $aes_key = 'Hj.92X$m`SD[S<ew';
+
+            // prepare and bind
+            $stmt = $conn->prepare("UPDATE accounts 
+                                    SET password = AES_ENCRYPT(?, '".$aes_key."') 
+                                    WHERE AES_DECRYPT(`password`, '".$aes_key."') = ? AND login = '".$_SESSION['login']."'");
+            $stmt->bind_param("ss", $new_pswrd, $old_pswrd);
+
+            // set parameters and execute
+            if (!$stmt->execute()) {
+                echo '<script>alert("Упс, ошибочка в запросе к БД!")</script>'; 
+            }
+            else {
+                echo '<script>alert("Пароль успешно изменен!")</script>'; 
+            }
+
+            $stmt->close();
+            $conn->close();
+        }
     ?>
 
     <main>
         <div class="container">
             <h1 class="account__header">Аккаунт</h1>
-            <p class="account__info">Логин:</p>
-            <p class="account__info">Email:</p>
-            <p class="account__info">Дата регистрации:</p>
+            <p class="account__info"><strong>Логин: </strong> <?php echo $_SESSION['login']; ?></p>
+            <p class="account__info"><strong>Email: </strong> <?php echo $_SESSION['email']; ?></p>
+            <p class="account__info"><strong>Дата регистрации: </strong> <?php echo $_SESSION['date']; ?></p>
             <div class="buttons-container">
                 <a class="account__btn modify-btn" href="modification.php">Редактировать</a><br>
                 <a class="account__btn logout-btn" href="logout.php">Выйти</a>

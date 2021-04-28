@@ -35,14 +35,20 @@
             $password = $_POST["password"]; 
             $aes_key = 'Hj.92X$m`SD[S<ew';
 
-            $sql = "SELECT login, AES_DECRYPT(`password`, '".$aes_key."') AS password 
+            $sql = "SELECT login, AES_DECRYPT(`password`, '".$aes_key."') AS password, email, date 
                     FROM accounts 
                     WHERE login = '".$login."' AND AES_DECRYPT(`password`, '".$aes_key."') = '".$password."'";
-            $result1 = $conn->query($sql);
+            $result = $conn->query($sql);
 
-            if ($result1->num_rows > 0 )
+            if ($result->num_rows > 0 )
             { 
                 $_SESSION['loggedin'] = true; //user is authorized
+                $_SESSION['login'] = $login;
+                $fields = $result->fetch_fields();
+                foreach ($result as $row) {
+                    $_SESSION['email'] = $row[$fields[2]->name];
+                    $_SESSION['date'] = $row[$fields[3]->name];
+                }
                 header("Location: account.php"); //redirect to requests
             }
             else
