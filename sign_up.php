@@ -33,17 +33,17 @@
             $email = $_POST["email"]; 
             $aes_key = 'Hj.92X$m`SD[S<ew';
             $date = date("Y-m-d");
+            $pswrd = generateStrongPassword();
 
             $sql = "INSERT INTO `accounts`(`login`, `email`, `password`, `date`) 
-                    VALUES ('$login', '$email', AES_ENCRYPT('sms_pass', '".$aes_key."'), '$date')";
-            if ($conn->query($sql)) {
-                echo '<script>alert("Аккаунт успешно создан! Пароль сгенерирован и отправлен на указанную почту.")</script>'; 
-            }
-            else {
-                echo 'Упс, ошибочка вышла!';
+                    VALUES ('$login', '$email', AES_ENCRYPT('".$pswrd."', '".$aes_key."'), '$date')";
+            if (!$conn->query($sql)) {
+                echo 'Упс, ошибочка в запросе к БД!';
             }
 
             $conn->close();
+
+            include 'sign_up_mail.php'; //скрип отправки логина и пароля на почту нового аккаунта продавца
         }
     ?> 
 
@@ -58,7 +58,7 @@
                 <div class="col-lg-6 offset-lg-3">
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="form form_sign-up mx-auto">
                         <h3 class="form__header">Регистрация продавца</h3>
-                        <small class="form__note">*Пароль будет сгенерирован автоматически и отправится на почту нового продавца, введенную ниже.</small>
+                        <small class="form__note">*Пароль будет сгенерирован автоматически и отправится на ниже веденную почту нового продавца вместе с его логином.</small>
                         <input name="login" class="form__input" type="text" placeholder="Логин" required>
                         <input name="email" class="form__input" type="email" placeholder="Email" required>
                         <input class="form__btn" type="submit" value="Зарегистрировать">
