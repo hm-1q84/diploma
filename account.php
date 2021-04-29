@@ -37,13 +37,12 @@
                                     SET password = AES_ENCRYPT(?, '".$aes_key."') 
                                     WHERE AES_DECRYPT(`password`, '".$aes_key."') = ? AND login = '".$_SESSION['login']."'");
             $stmt->bind_param("ss", $new_pswrd, $old_pswrd);
-
-            // set parameters and execute
-            if (!$stmt->execute()) {
-                echo '<script>alert("Упс, ошибочка в запросе к БД!")</script>'; 
+            $stmt->execute();
+            if ($stmt->affected_rows == 1) {
+                echo '<script>alert("Пароль успешно изменен!")</script>'; 
             }
             else {
-                echo '<script>alert("Пароль успешно изменен!")</script>'; 
+                echo '<script>alert("Неверный старый пароль!")</script>'; 
             }
 
             $stmt->close();
