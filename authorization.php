@@ -35,6 +35,18 @@
             $password = $_POST["password"]; 
             $aes_key = 'Hj.92X$m`SD[S<ew';
 
+            // $stmt = $conn->prepare("SELECT login, AES_DECRYPT(`password`, '".$aes_key."') AS password, email, date 
+            //                         FROM accounts 
+            //                         WHERE login = ? AND AES_DECRYPT(`password`, '".$aes_key."') = ?");
+            // $stmt->bind_param("ss", $login, $password);
+            // $stmt->execute();
+            // if ($stmt->fetch()) {
+                
+            // }
+            // else {
+
+            // }
+
             $sql = "SELECT login, AES_DECRYPT(`password`, '".$aes_key."') AS password, email, date 
                     FROM accounts 
                     WHERE login = '".$login."' AND AES_DECRYPT(`password`, '".$aes_key."') = '".$password."'";

@@ -33,31 +33,53 @@
             $new_login = $_POST['login'];
             $new_email = $_POST['email'];
 
-            if ($new_login == '' && $new_email == '') {
+            if ($new_login == '' && $new_email == '') { //если оба поля пустые
                 echo '<script>alert("Введите новые данные для изменения!")</script>'; 
             }
-            else {
-                if ($new_login == '') {
-                    $new_login = $old_login;
+            else { //если данные введены хотя бы в одно из полей
+                if ($new_login == '') { // если поле "новый логин" пустое
+                    $stmt = $conn->prepare("UPDATE accounts 
+                                            SET email = ?
+                                            WHERE email = ? AND login = ?");
+                    $stmt->bind_param("sss", $new_email, $old_email, $old_login);
+                    $stmt->execute();
+                    if ($stmt->affected_rows == 1) {
+                        echo '<script>alert("Данные успешно изменены!")</script>'; 
+                        $_SESSION['email'] = $new_email;
+                    }
+                    else {
+                        echo '<script>alert("Упс, ошибочка вышла!")</script>'; 
+                    }
                 }
-                elseif ($new_email == '') {
-                    $new_email = $old_email;
+                else { //поле логин заполнено
+                    if ($new_email == '') { //если поле "новый email" пустое
+                        $new_email = $old_email;
+                    }
+                    //проверка на существование аккаунта с таким логином
+                    $stmt = $conn->prepare("SELECT login FROM accounts WHERE login = ?");
+                    $stmt->bind_param("s", $new_login);
+                    $stmt->execute();
+                    if ($stmt->fetch()) { 
+                        echo '<script>alert("Аккаунт с таким логином уже существует!")</script>'; 
+                    }
+                    else { //если аккаунта с веденным логином ещё не существует, то меняем логин авторизованного аккаунта
+                        // prepare and bind
+                        $stmt = $conn->prepare("UPDATE accounts 
+                                                SET login = ?, email = ?
+                                                WHERE login = ? AND email = ?");
+                        $stmt->bind_param("ssss", $new_login, $new_email, $old_login, $old_email);
+                        $stmt->execute();
+                        if ($stmt->affected_rows == 1) {
+                            echo '<script>alert("Данные успешно изменены!")</script>'; 
+                            $_SESSION['login'] = $new_login;
+                            $_SESSION['email'] = $new_email;
+                        }
+                        else {
+                            echo '<script>alert("Упс, ошибочка вышла!")</script>'; 
+                        }
+                    }
                 }
-                // prepare and bind
-                $stmt = $conn->prepare("UPDATE accounts 
-                                        SET login = ?, email = ?
-                                        WHERE login = ? AND email = ?");
-                $stmt->bind_param("ssss", $new_login, $new_email, $old_login, $old_email);
-                $stmt->execute();
-                if ($stmt->affected_rows == 1) {
-                    echo '<script>alert("Данные успешно изменены!")</script>'; 
-                    $_SESSION['login'] = $new_login;
-                    $_SESSION['email'] = $new_email;
-                }
-                else {
-                    echo '<script>alert("Упс, ошибочка вышла!")</script>'; 
-                }
-                $stmt->close();
+                $stmt->close(); 
             }
 
             $conn->close();

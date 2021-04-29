@@ -35,7 +35,7 @@
 
             $result = $conn->query($sql);
             if (!$result) {
-                echo 'Упс, ошибочка в запросе к БД!';
+                echo '<script>alert("Упс, ошибочка в запросе к БД!")</script>'; 
             }
             else {
                 $fields = $result->fetch_fields();

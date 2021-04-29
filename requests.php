@@ -47,8 +47,10 @@
 
                     if (isset($_POST['find_request']) &&  $_POST['name'] != '') { //поиск заявки по фамилии клиента
                         $name = $_POST['name'];
-                        $sql = "SELECT * FROM requests WHERE name = '$name'";
-                        print_requests($conn, $sql);	
+                        $stmt = $conn->prepare("SELECT * FROM requests WHERE name = ?");
+                        $stmt->bind_param("s", $name);
+                        $stmt->execute();
+                        print_requests_prepStmt($stmt);
                     }
                     else { //обычное отображение (без поиска)
                         if (!isset($_GET['action'])) {//set action index during first load of page
@@ -71,13 +73,6 @@
     </main>
 
     <?php include 'footer.php'; ?>     <!-- dynamic footer connection -->
-
-    <!-- <script>  //script changing image of seller and link for logging-out
-        var img = document.getElementById("header__seller");
-        img.src = 'img/logout.png';
-        var logoutLink = document.getElementById("logoutLink");
-        logoutLink.href = 'logout.php';
-    </script> -->
 
 </body>
 </html>

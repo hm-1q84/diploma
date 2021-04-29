@@ -19,8 +19,13 @@
 
         $conn->query("SET NAMES utf8"); //для корректного отображения русских букв
     
-        $sql = "INSERT INTO requests (name, phone, email, comment) VALUES ('$name', '$phone', '$email', '$comment')";
-        $conn->query($sql);
+        $stmt = $conn->prepare("INSERT INTO requests (name, phone, email, comment) VALUES (?, ?, ?, ?)"); // prepared statement
+        $stmt->bind_param("ssss", $name, $phone, $email, $comment);
+        $stmt->execute();
+        if ($stmt->affected_rows != 1) {
+            echo '<script>alert("Ошибка в запросе к БД!")</script>'; 
+        }
+        $stmt->close();
         $conn->close();
 
         /* https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
@@ -33,10 +38,10 @@
         $token = "1772008932:AAHZak7CcBBi6IpGfd4DtvfpRbp_zwsnvk8";
         $chat_id = "-543378880";
         $arr = array(
-        'Имя пользователя: ' => $name,
-        'Телефон: ' => $phone,
-        'Email: ' => $email,
-        'Комментарий: ' => $comment
+            'Имя пользователя: ' => $name,
+            'Телефон: ' => $phone,
+            'Email: ' => $email,
+            'Комментарий: ' => $comment
         );
 
         $txt = "";

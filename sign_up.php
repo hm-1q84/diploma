@@ -35,15 +35,24 @@
             $date = date("Y-m-d");
             $pswrd = generateStrongPassword();
 
-            $sql = "INSERT INTO `accounts`(`login`, `email`, `password`, `date`) 
-                    VALUES ('$login', '$email', AES_ENCRYPT('".$pswrd."', '".$aes_key."'), '$date')";
-            if (!$conn->query($sql)) {
-                echo 'Упс, ошибочка в запросе к БД!';
+            //проверка на существование аккаунта с таким логином
+            $stmt = $conn->prepare("SELECT login FROM accounts WHERE login = ?");
+            $stmt->bind_param("s", $login);
+            $stmt->execute();
+            if ($stmt->fetch()) {
+                echo '<script>alert("Аккаунт с таким логином уже существует!")</script>'; 
+            }
+            else {
+                //регистрация нового аккаунта
+                $sql = "INSERT INTO `accounts`(`login`, `email`, `password`, `date`) 
+                        VALUES ('$login', '$email', AES_ENCRYPT('".$pswrd."', '".$aes_key."'), '$date')";
+                if (!$conn->query($sql)) {
+                    echo '<script>alert("Упс, ошибочка в запросе к БД!")</script>'; 
+                }
+                include 'sign_up_mail.php'; //скрип отправки логина и пароля на почту нового аккаунта продавца
             }
 
             $conn->close();
-
-            include 'sign_up_mail.php'; //скрип отправки логина и пароля на почту нового аккаунта продавца
         }
     ?> 
 
@@ -75,5 +84,4 @@
 
 <?php 
     // secret key: Hj.92X$m`SD[S<ew
-    // INSERT INTO `accounts`(`login`, `email`, `password`, `date`) VALUES ('test', 'test@gmail.com', AES_ENCRYPT('sms_pass', 'Hj.92X$m`SD[S<ew'), '2020-05-22')
 ?>

@@ -55,7 +55,7 @@
             <h1 class="account__header">Аккаунт</h1>
             <p class="account__info"><strong>Логин: </strong> <?php echo $_SESSION['login']; ?></p>
             <p class="account__info"><strong>Email: </strong> <?php echo $_SESSION['email']; ?></p>
-            <p class="account__info"><strong>Дата регистрации: </strong> <?php echo $_SESSION['date']; ?></p>
+            <p class="account__info"><strong>Дата регистрации: </strong> <?php echo date("d.m.Y", strtotime($_SESSION['date'])); ?></p>
             <div class="buttons-container">
                 <a class="account__btn modify-btn" href="modification.php">Редактировать</a><br>
                 <a class="account__btn logout-btn" href="logout.php">Выйти</a>
