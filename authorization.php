@@ -35,39 +35,32 @@
             $password = $_POST["password"]; 
             $aes_key = 'Hj.92X$m`SD[S<ew';
 
-            // $stmt = $conn->prepare("SELECT login, AES_DECRYPT(`password`, '".$aes_key."') AS password, email, date 
-            //                         FROM accounts 
-            //                         WHERE login = ? AND AES_DECRYPT(`password`, '".$aes_key."') = ?");
-            // $stmt->bind_param("ss", $login, $password);
-            // $stmt->execute();
-            // if ($stmt->fetch()) {
-                
-            // }
-            // else {
-
-            // }
-
-            $sql = "SELECT login, AES_DECRYPT(`password`, '".$aes_key."') AS password, email, date 
-                    FROM accounts 
-                    WHERE login = '".$login."' AND AES_DECRYPT(`password`, '".$aes_key."') = '".$password."'";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0 )
-            { 
-                $_SESSION['loggedin'] = true; //user is authorized
-                $_SESSION['login'] = $login;
-                $fields = $result->fetch_fields();
-                foreach ($result as $row) {
-                    $_SESSION['email'] = $row[$fields[2]->name];
-                    $_SESSION['date'] = $row[$fields[3]->name];
+            $stmt = $conn->prepare("SELECT login, AES_DECRYPT(`password`, '".$aes_key."') AS password, email, date 
+                                    FROM accounts 
+                                    WHERE login = ? AND AES_DECRYPT(`password`, '".$aes_key."') = ?");
+            $stmt->bind_param("ss", $login, $password);
+            $stmt->execute();
+            /* Store the result (to get properties) */
+            $stmt->store_result();
+            if ($stmt->num_rows == 1) {
+                 /* Bind the result to variables */
+                $stmt->bind_result($login, $password, $email, $date);
+                while ($stmt->fetch()) { 
+                    $_SESSION['loggedin'] = true; //user is authorized
+                    $_SESSION['login'] = $login;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['date'] = $date;
                 }
+                $stmt->free_result();
+                $stmt->close();
+                $conn->close();
                 header("Location: account.php"); //redirect to requests
             }
-            else
-            {
+            else {
                 echo '<script>alert("Неверный логин или пароль")</script>'; 
             }
-
+            $stmt->free_result();
+            $stmt->close();
             $conn->close();
         }
     ?> 

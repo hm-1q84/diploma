@@ -29,23 +29,24 @@
             $email = $_POST["email"]; 
             $aes_key = 'Hj.92X$m`SD[S<ew';
 
-            $sql = "SELECT AES_DECRYPT(`password`, '".$aes_key."') AS password 
-                    FROM accounts 
-                    WHERE login = '".$login."' AND email = '$email'";
-
-            $result = $conn->query($sql);
-            if (!$result) {
-                echo '<script>alert("Упс, ошибочка в запросе к БД!")</script>'; 
-            }
-            else {
-                $fields = $result->fetch_fields();
-                foreach ($result as $row) {
-                    $pswrd = $row[$fields[0]->name];
-                }
+            $stmt = $conn->prepare("SELECT AES_DECRYPT(`password`, '".$aes_key."') AS password 
+                                    FROM accounts 
+                                    WHERE login = ? AND email = ?");
+            $stmt->bind_param("ss", $login, $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $record = $result->fetch_assoc(); // fetch data   
+            if (!empty($record)) { //if record isn't empty then get password
+                $pswrd = $record['password'];
+                $stmt->close();
+                $conn->close();
                 include 'recovery_mail.php';
             }
-
-            $conn->close();
+            else { //if record is empty then smth is wrong, throw an error
+                $stmt->close();
+                $conn->close();
+                echo '<script>alert("Аккаунта с таким логином и паролем не существует!")</script>'; 
+            }
         }
     ?> 
 
