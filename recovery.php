@@ -53,7 +53,7 @@
     <main>
         <div class="container">
             <div class="row">
-                <div class="col-lg-2 offset-lg-10">
+                <div class="col-md-2 offset-md-10">
                     <a href="authorization.php" class="back-btn">Назад</a>
                 </div>
             </div>

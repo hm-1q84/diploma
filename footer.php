@@ -6,4 +6,8 @@
                 </div>
             </div>
         </div>
+        <!-- jQuery connection -->
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <!-- JS for mobile menu -->
+        <script src="js/main.js"></script>
 </footer>

@@ -86,7 +86,7 @@ main {
 /* header */
 header {
   background-color: var(--mainC);
-  height: 10rem;
+  min-height: 10rem;
 }
 header {
   padding: 1rem 0;
@@ -113,6 +113,64 @@ header {
 .header__icon:hover {
   width: 3rem;
   height: 3rem;
+}
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.mobile-menu_shown {
+    display: flex;
+}
+.mobile-menu__link {
+    color: #fff;
+}
+.mobile-menu hr {
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+.mobile-menu__btn-container {
+    display: none;
+}
+.mobile-menu__btn {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 20%;
+    position: relative;
+}
+.mobile-menu__btn span, 
+.mobile-menu__btn span::before, 
+.mobile-menu__btn span::after {
+    position: absolute;
+    top: 50%; margin-top: -1px;
+    left: 50%; margin-left: -10px;
+    width: 20px;
+    height: 2px;
+    background-color: #222;
+}
+.mobile-menu__btn span::before,
+.mobile-menu__btn span::after {
+  content: '';
+  display: block;
+  transition: 0.2s;
+}
+.mobile-menu__btn span::before {
+    transform: translateY(-5px);
+}
+.mobile-menu__btn span::after {
+    transform: translateY(5px);
+}
+.mobile-menu__btn_active span {
+    height: 0;
+}
+.mobile-menu__btn_active span:before {
+    transform: rotate(45deg);
+}
+.mobile-menu__btn_active span:after {
+    transform: rotate(-45deg);
 }
 
 /* footer */
@@ -152,26 +210,6 @@ footer {
 h2 {
   font-size: 2.4rem;
 }
-/* .product__table {
-  width: 100%;
-  border: 1px solid #000;
-  font-size: 1.4rem;
-}
-.product__table th {
-  background: var(--mainC);
-  color: #fff;
-  font-weight: normal;
-  font-size: 1.6rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid #000;
-}
-.product__table tr {
-  border-bottom: 1px solid #000;
-}
-.product__table td {
-  padding: 0.5rem 1rem;
-  border: 1px solid #000;
-} */
 .product__info {
   margin-top: 3rem;
   font-size: 1.6rem;
@@ -336,4 +374,99 @@ h2 {
 }
 .logout-btn {
   border: 1px solid var(--mainC);
+}
+
+
+/* MOBILE ADAPTATION */
+@media screen and (max-width:1199px) {
+    
+}
+@media screen and (max-width:991px) {
+    /* header */
+    .header__logo {
+        content: url(http://db-college/app/img/logo-small.jpg);
+        width: 8rem;
+        height: 8rem;
+    }
+    .header__menu {
+        padding: 0;
+    }
+}
+@media screen and (max-width:767px) {
+    .header__menu-container {
+        display: none;
+    }
+    .header__logo {
+        width: 6rem;
+        height: 6rem;
+        margin-top: 1rem;
+    }
+    .header__icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-top: 2.5rem;
+    }
+    .mobile-menu__btn-container {
+        display: flex;
+        margin-top: 2.5rem;
+    }
+    .main__info {
+        font-size: 12px;
+    }
+    .footer__info {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width:575px) {
+    h1 {
+        font-size: 20px;
+    }
+    h2 {
+        font-size: 16px;
+    }
+    .form__header {
+        font-size: 14px;
+    }
+    .table, .table th {
+        font-size: 8px;
+        word-break: break-all;
+    }
+    .product__info {
+        font-size: 12px;
+    }
+    .form {
+        font-size: 12px;
+        padding: 2rem;
+    }
+    .form_find {
+        flex-direction: column !important;
+        align-items: flex-end;
+    }
+    .form__input {
+        width: 25rem;
+        height: 4rem;
+        display: block;
+        margin-bottom: 1rem;
+    }
+    .form_find__input {
+        margin-right: 0;
+    }
+    .form_find__btn {
+        margin-bottom: 1rem;
+    }
+    .form__textarea {
+        height: 8rem;
+    }
+    .form__note {
+        margin: 2rem 3rem 1rem 3rem;
+    }
+    .back-btn {
+        font-size: 12px;
+    }
+    .contacts {
+        font-size: 12px;
+    }
+    .account__info {
+        font-size: 12px;
+    }
 }
